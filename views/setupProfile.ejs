@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Profile - MedAssist</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Setup Your Profile</h1>
+        <nav>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Complete Your Profile</h2>
+
+        <form action="/setupProfile" method="POST" enctype="multipart/form-data">
+            <!-- Profile Picture -->
+            <label>Upload Profile Picture:</label>
+            <input type="file" name="profilePicture" accept="image/*" required>
+
+            <!-- Personal Details -->
+            <label>Full Name:</label>
+            <input type="text" name="fullName" required>
+
+            <label>Date of Birth:</label>
+            <input type="date" name="dob" required>
+
+            <label>Gender:</label>
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label>Blood Group:</label>
+            <input type="text" name="bloodGroup" required>
+
+            <!-- Contact Details -->
+            <label>Phone Number:</label>
+            <input type="text" name="phone" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" value="<%= user.email %>" readonly>
+
+            <label>Address:</label>
+            <textarea name="address" required></textarea>
+
+            <!-- Medical Information -->
+            <h3>Medical Details</h3>
+
+            <label>Height (cm):</label>
+            <input type="number" name="height" required>
+
+            <label>Weight (kg):</label>
+            <input type="number" name="weight" required>
+
+            <label>Allergies:</label>
+            <textarea name="allergies"></textarea>
+
+            <label>Chronic Diseases:</label>
+            <textarea name="chronicDiseases"></textarea>
+
+            <label>Current Medications:</label>
+            <textarea name="currentMedications"></textarea>
+
+            <label>Past Surgeries:</label>
+            <textarea name="pastSurgeries"></textarea>
+
+            <label>Family Medical History:</label>
+            <textarea name="familyMedicalHistory"></textarea>
+
+            <label>Vaccination Records:</label>
+            <textarea name="vaccinationRecords"></textarea>
+
+            <!-- Emergency & Additional Information -->
+            <h3>Emergency & Additional Information</h3>
+
+            <label>Emergency Contact:</label>
+            <input type="text" name="emergencyContact" required>
+
+            <label>Insurance Details:</label>
+            <input type="text" name="insuranceDetails">
+
+            <label>Organ Donor Status:</label>
+            <select name="organDonorStatus">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+
+            <label>Lifestyle Habits (Smoking, Alcohol, etc.):</label>
+            <textarea name="lifestyleHabits"></textarea>
+
+            <button type="submit">Save Profile</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 MedAssist. All rights reserved.</p>
+    </footer>
+</body>
+</html>

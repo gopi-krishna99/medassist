@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Patient Details - MedAssist</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Edit Patient Details</h1>
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Editing <%= patient.fullName %>'s Medical Records</h2>
+
+        <form action="/patients/update/<%= patient._id %>?_method=PUT" method="POST">
+            <!-- Basic Details -->
+            <label>Full Name:</label>
+            <input type="text" name="fullName" value="<%= patient.fullName %>" readonly>
+
+            <label>Date of Birth (Age: <%= patient.age %>):</label>
+            <input type="date" name="dob" value="<%= patient.dob %>" readonly>
+
+            <label>Gender:</label>
+            <input type="text" name="gender" value="<%= patient.gender %>" readonly>
+
+            <label>Blood Group:</label>
+            <input type="text" name="bloodGroup" value="<%= patient.bloodGroup %>" readonly>
+
+            <!-- Contact Details -->
+            <label>Phone:</label>
+            <input type="text" name="phone" value="<%= patient.phone %>" readonly>
+
+            <label>Email:</label>
+            <input type="email" name="email" value="<%= patient.email %>" readonly>
+
+            <!-- Medical Information -->
+            <h3>Medical Details</h3>
+
+            <label>Height (cm):</label>
+            <input type="number" name="height" value="<%= patient.height %>" required>
+
+            <label>Weight (kg):</label>
+            <input type="number" name="weight" value="<%= patient.weight %>" required>
+
+            <label>BMI:</label>
+            <input type="text" name="bmi" value="<%= patient.bmi %>" readonly>
+
+            <label>Allergies:</label>
+            <textarea name="allergies"><%= patient.allergies %></textarea>
+
+            <label>Chronic Diseases:</label>
+            <textarea name="chronicDiseases"><%= patient.chronicDiseases %></textarea>
+
+            <label>Current Medications:</label>
+            <textarea name="currentMedications"><%= patient.currentMedications %></textarea>
+
+            <label>Past Surgeries:</label>
+            <textarea name="pastSurgeries"><%= patient.pastSurgeries %></textarea>
+
+            <label>Family Medical History:</label>
+            <textarea name="familyMedicalHistory"><%= patient.familyMedicalHistory %></textarea>
+
+            <label>Vaccination Records:</label>
+            <textarea name="vaccinationRecords"><%= patient.vaccinationRecords %></textarea>
+
+            <!-- Emergency & Additional Information -->
+            <h3>Emergency & Additional Information</h3>
+
+            <label>Emergency Contact:</label>
+            <input type="text" name="emergencyContact" value="<%= patient.emergencyContact %>">
+
+            <label>Insurance Details:</label>
+            <input type="text" name="insuranceDetails" value="<%= patient.insuranceDetails %>">
+
+            <label>Organ Donor Status:</label>
+            <select name="organDonorStatus">
+                <option value="true" <%= patient.organDonorStatus ? "selected" : "" %>>Yes</option>
+                <option value="false" <%= !patient.organDonorStatus ? "selected" : "" %>>No</option>
+            </select>
+
+            <label>Lifestyle Habits (Smoking, Alcohol, etc.):</label>
+            <textarea name="lifestyleHabits"><%= patient.lifestyleHabits %></textarea>
+
+            <button type="submit">Update Patient Details</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 MedAssist. All rights reserved.</p>
+    </footer>
+</body>
+</html>

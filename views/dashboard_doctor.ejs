@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - MedAssist</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, Dr. <%= user.fullName %>!</h1>
+        <nav>
+            <a href="/profile">Profile</a>
+            <a href="/patients">Patients</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Your Dashboard</h2>
+
+        <!-- Doctor Profile Section -->
+        <div class="profile-section">
+            <img src="<%= user.profilePicture ? '/uploads/' + user.profilePicture : '/images/default-profile.png' %>" alt="Profile Picture">
+            <p><strong>Name:</strong> Dr. <%= user.fullName %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Specialization:</strong> <%= user.specialization || 'Not Specified' %></p>
+        </div>
+
+        <!-- Doctor's Patients Section -->
+        <h3>Your Patients</h3>
+        <% if (patients.length > 0) { %>
+            <ul>
+                <% patients.forEach(patient => { %>
+                    <li>
+                        <a href="/patients/<%= patient._id %>">
+                            <%= patient.fullName %> (Age: <%= patient.age %>)
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No patients assigned yet.</p>
+        <% } %>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 MedAssist. All rights reserved.</p>
+    </footer>
+</body>
+</html>

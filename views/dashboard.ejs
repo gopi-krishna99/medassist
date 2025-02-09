@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MedAssist</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome, <%= user.role === 'doctor' ? 'Dr. ' + user.fullName : user.fullName %>!</h1>
+        <nav>
+            <a href="/profile">Profile</a>
+            <% if (user.role === 'doctor') { %>
+                <a href="/patients">Patients</a>
+            <% } %>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Your Dashboard</h2>
+
+        <!-- Display user details -->
+        <div class="profile-section">
+            <img src="<%= user.profilePicture ? '/uploads/' + user.profilePicture : '/images/default-profile.png' %>" alt="Profile Picture">
+            <p><strong>Name:</strong> <%= user.fullName %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Role:</strong> <%= user.role %></p>
+        </div>
+
+        <!-- If the user is a doctor, show patients section -->
+        <% if (user.role === 'doctor') { %>
+            <h3>Your Patients</h3>
+            <ul>
+                <% patients.forEach(patient => { %>
+                    <li>
+                        <a href="/patients/<%= patient._id %>">
+                            <%= patient.fullName %> (Age: <%= patient.age %>)
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+
+        <!-- If the user is a patient, show medical records -->
+        <% if (user.role === 'patient') { %>
+            <h3>Your Medical Records</h3>
+            <ul>
+                <li><strong>Blood Group:</strong> <%= user.bloodGroup || 'Not Available' %></li>
+                <li><strong>Allergies:</strong> <%= user.allergies || 'None' %></li>
+                <li><strong>Chronic Diseases:</strong> <%= user.chronicDiseases || 'None' %></li>
+                <li><strong>Current Medications:</strong> <%= user.currentMedications || 'None' %></li>
+                <li><strong>Past Surgeries:</strong> <%= user.pastSurgeries || 'None' %></li>
+                <li><strong>Family Medical History:</strong> <%= user.familyMedicalHistory || 'None' %></li>
+                <li><strong>Vaccination Records:</strong> <%= user.vaccinationRecords || 'None' %></li>
+            </ul>
+        <% } %>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 MedAssist. All rights reserved.</p>
+    </footer>
+</body>
+</html>
